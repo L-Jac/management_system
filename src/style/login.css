@@ -1,0 +1,123 @@
+.wave {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+.login-container {
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 创建两列，每列宽度相等 */
+  grid-gap: 14rem;
+  padding: 0 2rem;
+}
+
+.img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* 确保插图占据第一列 */
+  height: 100%;
+}
+
+.img img {
+  width: 500px;
+}
+
+.login-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* 确保登录框占据第二列 */
+  height: 100%;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+   /* 可选：添加背景色以提高可读性 */
+}
+
+.login-form-1 {
+  width: 80%;
+  height: 60%;
+  display: flex; /* 使用 Flexbox 布局 */
+  flex-direction: column; /* 设置为垂直方向 */
+  justify-content: center; /* 垂直居中对齐 */
+  align-items: center; /* 水平居中对齐 */
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.5); /* 修改为黑色半透明 */
+  padding: 1rem; /* 添加内边距 */
+}
+
+.login-form-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* 确保宽度占满整个 .login-box */
+  height: 100%; /* 确保高度占满整个 .login-box */
+}
+
+.avatar {
+  width: 350px;
+  height: 80px;
+}
+
+.login-form h2 {
+  text-transform: uppercase;
+  margin: 15px 0;
+  color: #ffffff;
+  font:
+    bold 200% Consolas,
+    Monaco,
+    monospace;
+}
+
+.outline-none {
+  color: #ffffff; /* 设置文本颜色为白色 */
+}
+
+@media screen and (max-width: 1180px) {
+  .login-container {
+    grid-gap: 9rem;
+  }
+
+  .login-form {
+    width: 290px;
+  }
+
+  .login-form h2 {
+    font-size: 2.4rem;
+    margin: 8px 0;
+  }
+
+  .img img {
+    width: 360px;
+  }
+
+  .avatar {
+    width: 280px;
+    height: 80px;
+  }
+}
+
+@media screen and (max-width: 968px) {
+  .wave {
+    display: none;
+  }
+
+  .img {
+    display: none;
+  }
+
+  .login-container {
+    grid-template-columns: 1fr;
+  }
+
+  .login-box {
+    justify-content: center;
+  }
+}
