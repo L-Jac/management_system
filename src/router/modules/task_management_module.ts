@@ -9,13 +9,13 @@ export default {
   children: [
     {
       path: "/task_management_module/statistical_analysis_report",
-      name: "数据分析报表",
+      name: "任务管理数据",
       component: () =>
         import(
           "@/views/task_management_module/statistical_analysis_report.vue"
         ),
       meta: {
-        title: "数据分析报表"
+        title: "任务管理数据"
       }
     },
     {

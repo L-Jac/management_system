@@ -9,13 +9,13 @@ export default {
   children: [
     {
       path: "/facility_and_equipment_management/statistical_analysis_report",
-      name: "数据分析报表",
+      name: "设施设备数据",
       component: () =>
         import(
           "@/views/facility_and_equipment_management/statistical_analysis_report.vue"
         ),
       meta: {
-        title: "数据分析报表"
+        title: "设施设备数据"
       }
     },
     {
@@ -27,15 +27,6 @@ export default {
         ),
       meta: {
         title: "设备信息管理"
-      }
-    },
-    {
-      path: "/facility_and_equipment_management/task_publishing",
-      name: "相关任务发布",
-      component: () =>
-        import("@/views/facility_and_equipment_management/task_publishing.vue"),
-      meta: {
-        title: "相关任务发布"
       }
     }
   ]

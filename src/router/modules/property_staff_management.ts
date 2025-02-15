@@ -9,13 +9,13 @@ export default {
   children: [
     {
       path: "/property_staff_management/statistical_analysis_report",
-      name: "数据分析报表",
+      name: "物业员工数据",
       component: () =>
         import(
           "@/views/property_staff_management/statistical_analysis_report.vue"
         ),
       meta: {
-        title: "数据分析报表"
+        title: "物业员工数据"
       }
     },
     {

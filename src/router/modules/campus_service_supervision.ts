@@ -9,13 +9,13 @@ export default {
   children: [
     {
       path: "/campus_service_supervision/statistical_analysis_report",
-      name: "数据分析报表",
+      name: "服务监督数据",
       component: () =>
         import(
           "@/views/campus_service_supervision/statistical_analysis_report.vue"
         ),
       meta: {
-        title: "数据分析报表"
+        title: "服务监督数据"
       }
     },
     {
