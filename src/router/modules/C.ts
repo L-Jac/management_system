@@ -9,10 +9,10 @@ export default {
   children: [
     {
       path: "/C/C_1",
-      name: "统计分析图表",
+      name: "首页",
       component: () => import("@/views/C/C_1.vue"),
       meta: {
-        title: "统计分析图表"
+        title: "首页"
       }
     },
     {
