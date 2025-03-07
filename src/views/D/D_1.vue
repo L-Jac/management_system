@@ -1,77 +1,329 @@
 <!-- 在线投诉 -->
 <script setup lang="ts">
 import { ref } from "vue";
+import { tableData } from "./data";
+// https://plus-pro-components.com/components/dialog-form.html
+import "plus-pro-components/es/components/dialog-form/style/css";
 import {
-  ElForm,
-  ElFormItem,
-  ElInput,
-  ElSelect,
-  ElOption,
-  ElButton,
-  ElDatePicker,
-  ElUpload,
-  ElMessage
-} from "element-plus";
-import { UploadProps } from "element-plus";
+  type PlusColumn,
+  type FieldValues,
+  PlusDialogForm
+} from "plus-pro-components";
 
-const form = ref({
-  complaintName: "",
-  complaintTarget: "",
-  complaintContent: "",
-  complaintTime: "",
-  attachment: []
+defineOptions({
+  name: "校园服务投诉"
 });
 
-const handleFileChange = (uploadFile: any, uploadFiles: any) => {
-  form.value.attachment = uploadFiles.map(file => file.name);
+const columns: PlusColumn[] = [
+  {
+    label: "投诉类型",
+    width: 120,
+    prop: "status",
+    valueType: "select",
+    options: [
+      {
+        label: "生活服务",
+        value: "0",
+        color: "red"
+      },
+      {
+        label: "行政服务",
+        value: "1",
+        color: "blue"
+      },
+      {
+        label: "后勤服务",
+        value: "2",
+        color: "yellow"
+      },
+      {
+        label: "教学服务",
+        value: "3",
+        color: "red"
+      }
+    ]
+  },
+  {
+    label: "是否匿名",
+    width: 100,
+    prop: "switch",
+    valueType: "switch"
+  },
+
+  {
+    label: "时间",
+    prop: "time",
+    valueType: "date-picker"
+  },
+  // {
+  //   label: "数量",
+  //   prop: "number",
+  //   valueType: "input-number",
+  //   fieldProps: { precision: 2, step: 2 }
+  // },
+  {
+    label: "区域",
+    prop: "city",
+    valueType: "cascader",
+    options: [
+      {
+        value: "0",
+        label: "食堂",
+        children: [
+          {
+            value: "0-0",
+            label: "西苑",
+            children: [
+              {
+                value: "0-0-0",
+                label: "一楼"
+              },
+              {
+                value: "0-0-1",
+                label: "二楼"
+              },
+              {
+                value: "0-0-2",
+                label: "三楼"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        value: "1",
+        label: "宿舍",
+        children: [
+          {
+            value: "1-0",
+            label: "紫荆",
+            children: [
+              {
+                value: "1-0-0",
+                label: "紫荆1#"
+              },
+              {
+                value: "1-0-1",
+                label: "紫荆2#"
+              },
+              {
+                value: "1-0-2",
+                label: "紫荆3#"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  // {
+  //   label: "地区",
+  //   prop: "place",
+  //   tooltip: "请精确到门牌号",
+  //   fieldProps: {
+  //     placeholder: "请精确到门牌号"
+  //   }
+  // },
+  // {
+  //   label: "要求",
+  //   prop: "demand",
+  //   valueType: "checkbox",
+  //   options: [
+  //     {
+  //       label: "四六级",
+  //       value: "0"
+  //     },
+  //     {
+  //       label: "计算机二级证书",
+  //       value: "1"
+  //     },
+  //     {
+  //       label: "普通话证书",
+  //       value: "2"
+  //     }
+  //   ]
+  // },
+  // {
+  //   label: "梦想",
+  //   prop: "gift",
+  //   valueType: "radio",
+  //   options: [
+  //     {
+  //       label: "诗",
+  //       value: "0"
+  //     },
+  //     {
+  //       label: "远方",
+  //       value: "1"
+  //     },
+  //     {
+  //       label: "美食",
+  //       value: "2"
+  //     }
+  //   ]
+  // },
+  // {
+  //   label: "到期时间",
+  //   prop: "endTime",
+  //   valueType: "date-picker",
+  //   fieldProps: {
+  //     type: "datetimerange",
+  //     startPlaceholder: "请选择开始时间",
+  //     endPlaceholder: "请选择结束时间"
+  //   }
+  // },
+  {
+    label: "说明",
+    prop: "desc",
+    valueType: "textarea",
+    fieldProps: {
+      maxlength: 300,
+      showWordLimit: true,
+      autosize: { minRows: 2, maxRows: 4 }
+    }
+  },
+  {
+    label: "姓名",
+    width: 120,
+    prop: "name",
+    valueType: "copy",
+    tooltip: "若要匿名可不填"
+  },
+  {
+    label: "学号",
+    width: 120,
+    prop: "name",
+    valueType: "copy"
+  },
+  {
+    label: "联系方式",
+    width: 120,
+    prop: "name",
+    valueType: "copy"
+  }
+];
+
+const visible = ref(false);
+const values = ref<FieldValues>({});
+
+const handleOpen = () => {
+  visible.value = true;
 };
 
-const onSubmit = () => {
-  console.log("提交的表单数据：", form.value);
-  // 这里可以添加提交表单到服务器的逻辑
-  ElMessage.success("投诉已提交");
-};
-const uploadProps: UploadProps = {};
-
-// 如果某些属性是可选的，并且你不需要它们，可以在初始化时不添加
-// 例如，如果 'disabled' 是一个可选属性，并且你不需要禁用上传功能，就不需要设置它
+const column2: TableColumnList = [
+  {
+    label: "日期",
+    prop: "date"
+  },
+  {
+    label: "状态",
+    prop: "status"
+  },
+  {
+    label: "投诉描述",
+    prop: "description"
+  }
+];
 </script>
 
 <template>
-  <div>
-    <h2>在线投诉</h2>
-    <el-form :model="form" label-width="120px">
-      <el-form-item label="投诉人信息">
-        <el-input v-model="form.complaintName" placeholder="请输入投诉人姓名" />
-      </el-form-item>
-      <el-form-item label="投诉对象">
-        <el-input v-model="form.complaintTarget" placeholder="请输入投诉对象" />
-      </el-form-item>
-      <el-form-item label="投诉内容">
-        <el-input
-          v-model="form.complaintContent"
-          type="textarea"
-          placeholder="请输入投诉内容"
-        />
-      </el-form-item>
-      <el-form-item label="投诉时间">
-        <el-date-picker
-          v-model="form.complaintTime"
-          type="datetime"
-          placeholder="选择投诉时间"
-        />
-      </el-form-item>
-      <el-form-item label="附件上传">
-        <el-upload v-bind="uploadProps">
-          <el-button type="primary">点击上传</el-button>
-        </el-upload>
-        <div v-if="form.attachment.length">
-          已上传文件：{{ form.attachment.join(", ") }}
+  <div class="page-container">
+    <el-card shadow="never" class="main-card">
+      <template #header>
+        <div class="card-header">
+          <h1 class="page-title">校园服务投诉</h1>
+          <el-button
+            type="primary"
+            size="large"
+            icon="Plus"
+            @click="handleOpen"
+          >
+            新增服务投诉
+          </el-button>
         </div>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="onSubmit">提交</el-button>
-      </el-form-item>
-    </el-form>
+      </template>
+
+      <!-- 弹窗表单 -->
+      <PlusDialogForm
+        v-model:visible="visible"
+        v-model="values"
+        :form="{ columns }"
+        lable="新增服务投诉"
+      />
+      <!-- 历史投诉记录 -->
+      <div class="table-section">
+        <h2 class="table-title">历史投诉记录</h2>
+        <pure-table
+          :data="tableData"
+          :columns="column2"
+          border
+          stripe
+          class="custom-table"
+        >
+          <template #empty>
+            <el-empty description="暂无投诉记录" />
+          </template>
+        </pure-table>
+        <el-pagination
+          class="pagination"
+          :page-size="10"
+          :pager-count="5"
+          layout="total, prev, pager, next"
+          :total="tableData.length"
+        />
+      </div>
+    </el-card>
   </div>
 </template>
+
+<style scoped>
+.page-container {
+  padding: 20px;
+  background-color: #f5f7fa;
+}
+
+.main-card {
+  border-radius: 12px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.page-title {
+  color: #303133;
+  font-size: 24px;
+  margin: 0;
+}
+
+.table-section {
+  margin-top: 24px;
+}
+
+.table-title {
+  color: #606266;
+  font-size: 18px;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #ebeef5;
+}
+
+.custom-table {
+  margin-top: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.pagination {
+  margin-top: 20px;
+  justify-content: flex-end;
+}
+
+:deep(.el-table__header th) {
+  background-color: #f8f9fa;
+  font-weight: 600;
+}
+</style>
