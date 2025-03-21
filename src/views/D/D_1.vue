@@ -55,12 +55,6 @@ const columns: PlusColumn[] = [
     prop: "time",
     valueType: "date-picker"
   },
-  // {
-  //   label: "数量",
-  //   prop: "number",
-  //   valueType: "input-number",
-  //   fieldProps: { precision: 2, step: 2 }
-  // },
   {
     label: "区域",
     prop: "city",
@@ -116,62 +110,6 @@ const columns: PlusColumn[] = [
       }
     ]
   },
-  // {
-  //   label: "地区",
-  //   prop: "place",
-  //   tooltip: "请精确到门牌号",
-  //   fieldProps: {
-  //     placeholder: "请精确到门牌号"
-  //   }
-  // },
-  // {
-  //   label: "要求",
-  //   prop: "demand",
-  //   valueType: "checkbox",
-  //   options: [
-  //     {
-  //       label: "四六级",
-  //       value: "0"
-  //     },
-  //     {
-  //       label: "计算机二级证书",
-  //       value: "1"
-  //     },
-  //     {
-  //       label: "普通话证书",
-  //       value: "2"
-  //     }
-  //   ]
-  // },
-  // {
-  //   label: "梦想",
-  //   prop: "gift",
-  //   valueType: "radio",
-  //   options: [
-  //     {
-  //       label: "诗",
-  //       value: "0"
-  //     },
-  //     {
-  //       label: "远方",
-  //       value: "1"
-  //     },
-  //     {
-  //       label: "美食",
-  //       value: "2"
-  //     }
-  //   ]
-  // },
-  // {
-  //   label: "到期时间",
-  //   prop: "endTime",
-  //   valueType: "date-picker",
-  //   fieldProps: {
-  //     type: "datetimerange",
-  //     startPlaceholder: "请选择开始时间",
-  //     endPlaceholder: "请选择结束时间"
-  //   }
-  // },
   {
     label: "说明",
     prop: "desc",
