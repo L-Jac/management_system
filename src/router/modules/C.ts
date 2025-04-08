@@ -2,9 +2,9 @@ export default {
   path: "/C",
   redirect: "/C/C_1",
   meta: {
-    icon: "ri:list-check-3",
-    title: "校园服务监督",
-    rank: 3
+    // icon: "ri:list-check-3",
+    // title: "校园服务监督",
+    rank: 13
   },
   children: [
     {

@@ -2,9 +2,9 @@ export default {
   path: "/B",
   redirect: "/B/B_1",
   meta: {
-    icon: "ri:instance-fill",
-    title: "设施设备管理",
-    rank: 2
+    // icon: "ri:instance-fill",
+    // title: "设施设备管理",
+    rank: 12
   },
   children: [
     {

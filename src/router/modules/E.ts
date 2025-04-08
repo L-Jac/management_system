@@ -3,8 +3,8 @@ export default {
   redirect: "/E/E_1",
   meta: {
     icon: "ri:list-check-3",
-    title: "员工角色",
-    rank: 4
+    title: "物业员工",
+    rank: 1
   },
   children: [
     {

@@ -3,8 +3,8 @@ export default {
   redirect: "/D/D_1",
   meta: {
     icon: "ri:list-check-3",
-    title: "师生角色",
-    rank: 4
+    title: "普通师生",
+    rank: 2
   },
   children: [
     {

@@ -2,9 +2,9 @@ export default {
   path: "/A",
   redirect: "/A/A_1",
   meta: {
-    icon: "ep:user-filled",
-    title: "物业员工管理",
-    rank: 1
+    // icon: "ep:user-filled",
+    // title: "物业员工管理",
+    rank: 11
   },
   children: [
     {
